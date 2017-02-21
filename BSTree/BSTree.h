@@ -55,6 +55,8 @@ BSTREE_API BSTree* create_bstree();
 BSTREE_API int tree_insert(BSTree* T,void* value);
 BSTREE_API int tree_delete(BSTree* T,void* value);
 
+BSTREE_API int tree_height(const BSTreeNode* root);
+
 // 其他函数
 void before_traverse(const BSTreeNode* root);
 

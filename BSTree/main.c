@@ -25,7 +25,7 @@ int main(int argc, const char * argv[]) {
     int* data = NULL;
     int arr[10] = {12,34,1,65,75,21,42};
     // 插入3个节点
-    for(int i=0;i<2;i++){
+    for(int i=0;i<4;i++){
         data = (int *)malloc(sizeof(int));
         *data = arr[i];
         tree_insert(T, data);
@@ -33,6 +33,8 @@ int main(int argc, const char * argv[]) {
     }
     
     before_traverse(T->root);
+    printf("------\n");
+    middle_traverse(T->root);
     
     
     

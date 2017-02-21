@@ -107,13 +107,12 @@ void before_traverse(const BSTreeNode* root)
 // 中序遍历
 void middle_traverse(const BSTreeNode* root)
 {
-    if(root == NULL){
+    if(IS_NULL(root)){
         return;
     }
     middle_traverse(root->left);
     print_node(root->value);
     middle_traverse(root->right);
-    
 }
 // 后序遍历
 void after_traverse(const BSTreeNode* root)
@@ -126,6 +125,23 @@ void after_traverse(const BSTreeNode* root)
     print_node(root->value);
     
 }
+
+/**
+ * 二叉树的高度
+ * 高度是从叶节点数到它的根节点
+ * 采用递归的方式 计算出树的高度
+ */
+int tree_height(const BSTreeNode* root)
+{
+    int hl = 0,hr = 0;
+    if(IS_NULL(root))return 0;
+    
+    hl = tree_height(root->left);
+    hr = tree_height(root->right);
+    return hl>hr ? hl+1 : hr+1;
+    
+}
+
 
 // 二叉树 是否已满
 BSTREE_API bool is_full(const BSTree* T)
