@@ -142,6 +142,45 @@ int tree_height(const BSTreeNode* root)
     
 }
 
+/**
+ * 二叉树的最大节点
+ */
+BSTreeNode* tree_max_node(BSTreeNode* root)
+{
+    BSTreeNode* max = root;
+    if(IS_NULL(max)){
+        return max;
+    }
+    /*
+    print_node(max->value);
+    max = max->right;
+    print_node(max->value);
+    max = max->right;
+    
+    printf("是空吗：%d\n",(int)IS_NULL(max));
+    return root;*/
+    
+    while (max->right != NULL) {
+        max = max->right;
+    }
+    return max;
+}
+/**
+ * 二叉树的最小节点
+ */
+BSTreeNode* tree_min_node(BSTreeNode* root)
+{
+    BSTreeNode* min = root;
+    if(IS_NULL(min)){
+        return min;
+    }
+    // !IS_NULL(min) 是错的
+    while ( min->left != NULL ) {
+        min = min->left;
+    }
+    return min;
+}
+
 
 // 二叉树 是否已满
 BSTREE_API bool is_full(const BSTree* T)

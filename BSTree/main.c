@@ -23,9 +23,11 @@ int main(int argc, const char * argv[]) {
     BSTree *T = create_bstree();
     T->curr_size = 0;
     int* data = NULL;
-    int arr[10] = {12,34,1,65,75,21,42};
+    int arr[INIT_SIZE] = {120,134,24,  16,31,18,  39,65,75,  21,42,13,  12};
+    printf("是不是空呢:%d\n",arr[14]);
     // 插入3个节点
-    for(int i=0;i<4;i++){
+    for(int i=0;i<INIT_SIZE;i++){
+        if(arr[i] == 0)continue;
         data = (int *)malloc(sizeof(int));
         *data = arr[i];
         tree_insert(T, data);
@@ -34,7 +36,12 @@ int main(int argc, const char * argv[]) {
     
     before_traverse(T->root);
     printf("------\n");
-    middle_traverse(T->root);
+    int height = tree_height(T->root);
+    printf("高度是：%d\n",height);
+    BSTreeNode* max = tree_max_node(T->root);
+    print_node(max->value);
+    BSTreeNode* min = tree_min_node(T->root);
+    print_node(min->value);
     
     
     
