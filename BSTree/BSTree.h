@@ -11,8 +11,6 @@
  * 它的作用大概是 将布尔值扩展，比如 true扩展为1；false扩展为0等等
  
  
- 
- 
  */
 
 
@@ -54,6 +52,7 @@ typedef struct BSTree
 BSTREE_API BSTree* create_bstree();
 BSTREE_API int tree_insert(BSTree* T,void* value);
 BSTREE_API int tree_delete(BSTree* T,void* value);
+BSTREE_API BSTreeNode* tree_search(const BSTree* T,void* value);
 
 BSTREE_API int tree_height(const BSTreeNode* root);
 BSTREE_API BSTreeNode* tree_max_node(BSTreeNode* root);
@@ -61,6 +60,7 @@ BSTREE_API BSTreeNode* tree_min_node(BSTreeNode* root);
 
 // 其他函数
 void before_traverse(const BSTreeNode* root);
+void print_node(const void* value);
 
 
 

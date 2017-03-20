@@ -7,6 +7,10 @@
 //
 
 /*
+ 1.二叉树的节点删除：
+ 节点删除是相对比较复杂的一种操作。
+ 
+ 
  
  
  */
@@ -34,18 +38,34 @@ int main(int argc, const char * argv[]) {
         
     }
     
-    before_traverse(T->root);
+    // before_traverse(T->root);
     printf("------\n");
     int height = tree_height(T->root);
     printf("高度是：%d\n",height);
     BSTreeNode* max = tree_max_node(T->root);
+    printf("节点最大的值是：");
     print_node(max->value);
     BSTreeNode* min = tree_min_node(T->root);
+    printf("节点最小的值是：");
     print_node(min->value);
     
+    printf("------\n");
+    // 测试寻找节点
+    int* var1 = NULL;
+    var1 = (int *)malloc(sizeof(int));
+    *var1 = 12;
+    BSTreeNode* res = tree_search(T, var1);
+    printf("寻找节点值为%d的父节点的值是：",INT_VAL(var1));
+    print_node(res->parent->value);
+    // 测试删除节点
+    *var1 = 16;
+    tree_delete(T, var1);
+    before_traverse(T->root);
     
     
     
-    printf("Hello, World!1111\n");
+    
+    
+    printf("Hello, World!2017\n");
     return 0;
 }

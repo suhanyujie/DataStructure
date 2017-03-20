@@ -88,6 +88,64 @@ void print_node(const void* value)
     printf("%d\n", *((int*)value));
 }
 
+// 寻找节点
+BSTREE_API BSTreeNode* tree_search(const BSTree* T,void* value)
+{
+    BSTreeNode* root = T->root;
+    while(!IS_NULL(root)){
+        if(INT_VAL(root->value) == INT_VAL(value)){
+            return root;
+        }else if (INT_VAL(root->value) < INT_VAL(value)){
+            root = root->right;
+        }else{
+            root = root->left;
+        }
+    }
+    
+    return root;
+}
+
+// 删除节点
+int tree_delete(BSTree* T,void* value)
+{
+    if(IS_NULL(value))return SUCCESS;
+    // 寻找这个值的节点
+    BSTreeNode* pGoal = tree_search(T, value);
+    if (IS_NULL(pGoal)) {
+        return SUCCESS;
+    }    // 删除操作
+    /*
+     1.没有子节点的情况
+     2.有子节点的情况：先free子节点（防止内存泄漏），再free本身节点
+     */
+    if ( IS_NULL(pGoal->right) && IS_NULL(pGoal->left) ) {
+        BSTreeNode* parent = pGoal->parent;
+        if ( INT_VAL(pGoal->value) > INT_VAL(parent->value) ) {
+            parent->right = NULL;
+        } else {
+            parent->left = NULL;
+        }
+        free(pGoal);
+        printf("the parent val is:%d\n",INT_VAL(parent->value));
+        return SUCCESS;
+    } else {
+        if(!IS_NULL(pGoal->left))
+            tree_delete(T, pGoal->left->value);
+        if(!IS_NULL(pGoal->right))
+            tree_delete(T, pGoal->right->value);
+        // 删完子节点时，再将自己删除
+        BSTreeNode* parent = pGoal->parent;
+        if ( INT_VAL(pGoal->value) > INT_VAL(parent->value) ) {
+            parent->right = NULL;
+        } else {
+            parent->left = NULL;
+        }
+        free(pGoal);
+        return SUCCESS;
+    }
+    
+}
+
 // 前序遍历
 void before_traverse(const BSTreeNode* root)
 {
